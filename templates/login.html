@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% block css %}
+<style>
+    .img-login{
+        height: 100vh;
+        background-image: url('https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+{% endblock %}
+
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6 bg-dark">
+           <div class="card mt-3">
+               <div class="card-body">
+                   <h4 class="card-title">Login to Continue</h4>
+                   <form method="post">
+                    <div class="form-group">
+                      <label for="email"><i class="fa fa-envelope" aria-hidden="true"></i> Email Address</label>
+                      <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="john@cena.com" required>
+                      <small id="emailHelp" class="form-text text-muted">enter the registered email address</small>
+                    </div>
+                    <div class="form-group">
+                      <label for="password"><i class="fa fa-key" aria-hidden="true"></i> Password</label>
+                      <input type="password" class="form-control" name="password" id="password" placeholder="johncena's password" required>
+                    </div>
+                    <button class="btn btn-success">Continue</button>
+                    <a class="btn btn-warning" href="/register" role="button">register now</a>
+                   </form>
+               </div>
+           </div>
+        </div>
+        <div class="col-sm-6 img-login">
+            PROJECT-X
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

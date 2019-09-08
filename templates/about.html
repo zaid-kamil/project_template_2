@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+{% block body %}
+    <div class="number">
+        click the button
+    </div>
+    <button class="btn btn-primary" id="hitme">Click to update</button>
+{% endblock %}
+
+{% block js %}
+    <script>
+        $(function () {
+            $('#hitme').click(function(){
+                $.ajax({
+                    type: "POST",
+                    url: "/ajax_update",
+                    success: function (response) {
+                        // alert(response.value)
+                        $('.number').html('<h1>'+response.value+'</h1>')
+                    },
+                    error:function(response){
+                        alert("FAILED to WORK")
+                    }
+                });
+            })
+        });
+    </script>
+{% endblock %}
+
+
+
+

@@ -1,2 +1,81 @@
 {% extends 'layout.html' %}
 
+{% block css %}
+    <style>
+        body{
+            background-color: rgb(53, 32, 73);
+        }
+    </style>
+{% endblock %}
+
+
+{% block body %}
+<div class="container">
+    <div class="row">
+      <div class="col-sm-12 mt-5">
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title">Register now</h3>
+            <form method="post">
+                <input type="text" name="name" id="name"><br>
+                <input type="email" name="email" id="email"><br>
+                <input type="password" name="password" id="password"><br>
+                <input type="text" name="phone" id="phone"><br>
+                <button class="btn btn-primary">
+                    register now
+                </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 mt-2">
+        <div class="card">
+          <div class="card-body results">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+    <script>
+        $(function () {
+            $('form').submit(function(event){
+                event.preventDefault()
+                event.stopPropagation()
+                $('button').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...')
+                var name = $('#name').val();
+                var email = $('#email').val();
+                var password = $('#password').val();
+                var phone = $('#phone').val();
+            
+                formdata = {
+                    'name':name,
+                    'email':email,
+                    'password':password,
+                    'phone': phone
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: "/register",
+                    data: formdata,
+                    success: function (response) {
+                        $('button').html("done")
+                        if (response.status =='success'){
+                            $('.results').html('the form is processed, go home!')
+                        }else{
+                            $('.results').html('go home! you must have fill it wrong')
+                        }
+                    },
+                    error:function(response){
+
+                    }
+                });
+
+            })
+        });
+    </script>
+{% endblock %}
